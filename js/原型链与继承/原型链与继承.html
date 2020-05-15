@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script>
+        // 1.什么是原型
+        (function () {
+                function animals(name, sex) { // 一个类
+                    this.name = name;
+                    this.sex = sex;
+                }
+                let dog = new animals('dog', 'male');
+
+                console.log(dog.__proto__) //原型 
+                console.log(animals.prototype) //原型
+                console.log(dog.__proto__ === animals.prototype) // true
+                console.log(dog.__proto__.constructor === animals) //true
+
+                animals.prototype.eat = 'food';
+                console.log(dog.eat) //food  会通过__proto__进行属性查找 
+
+                console.log(dog.wang) //underfined 查找失败,未定义,原型链上也没有该属性
+            }
+
+        )()
+    </script> -->
+
+    <script>
+        // 3.ES5的继承方式
+        function animals(name, sex) { // 一个类
+                    this.name = name;
+                    this.sex = sex;
+                }
+
+                function dog(){
+
+                }
+                dog.prototype = new animals('abc');
+
+                let d = new dog();
+                let d1 = new dog();
+                d.name = 'abc'
+                console.log(d)
+                console.log(d1)
+
+                let a = new animals();
+                console.log(a)
+
+
+        (function () {
+                function animals(name, sex) { // 一个类
+                    this.name = name;
+                    this.sex = sex;
+                }
+
+                function dog(){
+
+                }
+
+                //构造继承
+                // function dog() {
+                //     animals.call(this, 'dog', 'male')
+                // }
+
+                //y原型链继承
+                // dog.prototype = new animals();
+
+
+                //组合继承
+                // function dog() {
+                //     animals.call(this, 'dog', 'male')
+                // }
+                // dog.prototype = new animals();
+                // dog.prototype.constructor = dog;  //将constructor正确指向
+
+
+                // //寄生继承
+
+                // function createAnother(origin){  //相当于克隆一个新的空对象出来
+                //     let clone = Object.create(origin);
+                //     clone.fn = function(){};
+                //     clone.age = 50;
+                //     return clone
+                // }
+
+
+                // //寄生组合继承
+                // function dog() { //访问父类实例上的属性和方法
+                //     animals.call(this, 'dog', 'male')
+                // }
+                // dog.prototype = Object.create(animals.prototype) //访问父类原型上的属性和方法
+                // dog.prototype.constructor = dog; //将constructor正确指向
+
+                class cat extends animals{ 
+                    constructor(){
+                        
+                        super()
+                    }
+                }
+
+                
+
+            }
+
+        )()
+    </script>
+
+
+</body>
+
+</html>

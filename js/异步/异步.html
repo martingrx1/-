@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //事件循环
+        // console.log('start');
+
+        // setTimeout(() => {
+        //     console.log('set end')
+        //     setTimeout(() => {
+        //         console.log('set2 end')
+        //     }, 1000);
+        // }, 1000);
+
+        // console.log('end')
+        // // start
+        // // end
+        // // 一秒后... set end
+        // // 两秒后... set2 end
+    </script>
+
+    <script>
+        console.log('start')
+
+        setTimeout(() => { //添加入宏任务中
+            console.log('setTimout end')
+        }, 1000);
+
+        let p = new Promise((reslove) => {
+            console.log('promise start'); //同步任务
+            reslove('reslove') //可以添加 then 入微任务之中
+        })
+
+        async function as() {
+            await console.log('async 1');
+
+            console.log('async end')
+        }
+        as();
+        // asycn 的 await相当于 
+        // new promise(() => {
+        //     console.log('async 1');
+        // }).then((res) => {
+        //     console.log('async end')
+        // })
+
+        p.then((res) => { //微任务队列中
+            console.log(res)
+        })
+      
+        console.log('end')
+
+        //start
+        //promist start
+        // async 1
+        //end
+        //async end
+        //reslove  微任务
+        //setTimout end
+    </script>
+
+</body>
+
+</html>

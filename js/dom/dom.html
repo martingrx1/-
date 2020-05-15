@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            a: 123
+        }
+
+        function fun(x,y) {
+            a = 465;
+            console.log(this.a)
+            console.log(x,y)
+        }
+        fun.bind(obj)(999) //123
+    </script>
+</body>
+
+</html>
